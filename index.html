@@ -1,67 +1,98 @@
-<footer class="bg-gray-50 dark:bg-darkCard border-t border-gray-100 dark:border-darkBorder py-12 mt-auto">
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПАШНЯ — Новостной портал</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { agro: '#2D5A27', darkBg: '#121212', darkCard: '#1e1e1e', darkBorder: '#2d2d2d' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        #progress-bar { height: 3px; background: #2D5A27; width: 0%; position: fixed; top: 0; left: 0; z-index: 100; transition: width 0.1s ease; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .filter-btn.active { background-color: #2D5A27; color: white; border-color: #2D5A27; }
+    </style>
+</head>
+<body class="bg-white dark:bg-darkBg text-gray-900 dark:text-gray-100 font-sans antialiased flex flex-col min-h-screen">
+    <div id="progress-bar"></div>
+
+    <header class="border-b border-gray-100 dark:border-darkBorder sticky top-0 bg-white/95 dark:bg-darkBg/95 backdrop-blur-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-3xl font-black tracking-tighter uppercase">Пашня</a>
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+            </div>
+            <nav class="flex gap-6 text-xs font-bold uppercase tracking-widest text-gray-500 mt-4 md:mt-0">
+                <a href="#" class="hover:text-agro">Технопарк</a>
+                <a href="#" class="hover:text-agro">Экономика</a>
+                <a href="#" class="hover:text-agro">Агро-IT</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div class="lg:col-span-8 space-y-12">
+            <article class="news-item reveal active group flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-64 h-40 bg-gray-100 dark:bg-darkCard border border-gray-200 dark:border-darkBorder flex items-center justify-center">
+                    <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+                <div>
+                    <span class="text-agro font-bold text-xs uppercase">Технопарк</span>
+                    <h2 class="text-xl font-bold mt-2 dark:text-white">Сайт «Пашня» запущен на GitHub</h2>
+                    <p class="text-gray-500 mt-2 text-sm">Первый шаг к созданию крупнейшего агро-медиа пройден успешно.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 dark:bg-darkCard border-t border-gray-100 dark:border-darkBorder py-12">
         <div class="max-w-6xl mx-auto px-4 flex flex-col items-center">
-            <p class="text-2xl font-black mb-2 tracking-tighter dark:text-white uppercase">Пашня</p>
+            <p class="text-2xl font-black mb-4 uppercase">Пашня</p>
             
-            <div class="flex items-center gap-2 mb-6 opacity-60 hover:opacity-100 transition-opacity">
-                <svg class="w-3 h-3 text-agro" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                </svg>
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://nikolaytkachenkoru-ops.github.io/pashnya&count_bg=%232D5A27&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=визиты&edge_flat=true" alt="Счетчик визитов"/>
+            <div class="mb-6">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://nikolaytkachenkoru-ops.github.io/pashnya&count_bg=%232D5A27&title_bg=%23555555&title=визиты&edge_flat=true" alt="Счетчик"/>
             </div>
 
-            <div class="text-[10px] text-gray-300 dark:text-gray-600 font-bold uppercase tracking-[0.3em]">&copy; 2026 ПАШНЯ</div>
+            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">&copy; 2026 ПАШНЯ</div>
         </div>
     </footer>
 
     <script>
-        // Код прогресс-бара и темы остается прежним
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
+        // Прогресс-бар
+        window.onscroll = () => {
+            let scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             document.getElementById("progress-bar").style.width = scrolled + "%";
         };
-
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        if (document.documentElement.classList.contains('dark')) lightIcon.classList.remove('hidden');
-        else darkIcon.classList.remove('hidden');
-
-        themeToggleBtn.addEventListener('click', () => {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
+        // Тема
+        const btn = document.getElementById('theme-toggle');
+        const darkIco = document.getElementById('theme-toggle-dark-icon');
+        const lightIco = document.getElementById('theme-toggle-light-icon');
+        if (document.documentElement.classList.contains('dark')) lightIco.classList.remove('hidden'); else darkIco.classList.remove('hidden');
+        btn.onclick = () => {
             document.documentElement.classList.toggle('dark');
+            darkIco.classList.toggle('hidden');
+            lightIco.classList.toggle('hidden');
             localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-        });
-
-        const revealCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
         };
-        const observer = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const newsItems = document.querySelectorAll('.news-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-
-                newsItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'flex';
-                        setTimeout(() => item.classList.add('active'), 10);
-                    } else {
-                        item.style.display = 'none';
-                        item.classList.remove('active');
-                    }
-                });
-            });
-        });
     </script>
+</body>
+</html>
